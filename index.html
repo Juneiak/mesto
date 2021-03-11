@@ -5,7 +5,76 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>mesto</title>
 </head>
-<body>
-  
+<body class="common" style="background-color:grey;">
+  <div class="page">
+
+    <section class="pop-up">
+      <img src="./images/Close_Icon.svg" alt="Закрывающий крестик">
+      <form class="pop-up__form" method="POST">
+        <div class="pop-up__form-container">
+          <h2 class="pop-up__title">Редактировать профиль</h2>
+          <fieldset class="pop-up__input-container">
+            <input class="pop-up__form-item" type="text" id="name" name="name" value="">
+            <input class="pop-up__form-item" type="text" id="about" name="about" value="">
+            <input class="pop-up__form-button" type="submit" value="Сохранить">
+          </fieldset>
+        </div>
+      </form>
+    </section>
+
+    <header class="header">
+      <img class="header__image" src="./images/Vector-2.svg" alt="Логотип 'mesto'">
+    </header>
+
+    <main class="main">
+      <section class="profile">
+        <img src="./images/avatar.jpg" alt="аватар">
+        <div class="profile__info">
+          <h1 class="profile__name">Жак-Ив Кусто</h1>
+          <p class="profile__about">Исследователь океана</p>
+          <img class="profile__edit-button" src="./images/Vector-1.svg">
+        </div>
+        <img class="profile__add-button" src="./images/Vector.svg">
+      </section>
+      
+      <section class="elements">
+        <ul class="elements-table">
+          <li class="elements-table__element">
+            <img class="elements-table__image" src="./images/duhtau1.jpg" alt="фотография горы Дыхтау">
+            <p class="elements-table__place-name">Гора Дыхтау</p>
+            <img class="elements-table__like-button" src="./images/Vector_(Stroke).svg" alt="иконка 'сердце'">
+          </li>
+          <li class="elements-table__element">
+            <img class="elements-table__image" src="./images/arhuz.jpg" alt="фотография Архыза">
+            <p class="elements-table__place-name">Архыз</p>
+            <img class="elements-table__like-button" src="./images/Vector_(Stroke).svg" alt="иконка 'сердце'">
+          </li>
+          <li class="elements-table__element">
+            <img class="elements-table__image" src="./images/dombay.jpg" alt="фотография Домбая">
+            <p class="elements-table__place-name">Домбай</p>
+            <img class="elements-table__like-button" src="./images/Vector_(Stroke).svg" alt="иконка 'сердце'">
+          </li>
+          <li class="elements-table__element">
+            <img class="elements-table__image" src="./images/elbrus.jpg" alt="фотография горы Эльбруса">
+            <p class="elements-table__place-name">Гора Эльбрус</p>
+            <img class="elements-table__like-button" src="./images/Vector_(Stroke).svg" alt="иконка 'сердце'">
+          </li>
+          <li class="elements-table__element">
+            <img class="elements-table__image" src="./images/kazbeg.jpg" alt="фотография Казбека">
+            <p class="elements-table__place-name">Казбек</p>
+            <img class="elements-table__like-button" src="./images/Vector_(Stroke).svg" alt="иконка 'сердце'">
+          </li>
+          <li class="elements-table__element">
+            <img class="elements-table__image" src="./images/karachaevsk.jpg" alt="фотография Карачаево-Черкесии">
+            <p class="elements-table__place-name">Карачаево-Черкесии</p>
+            <img class="elements-table__like-button" src="./images/Vector_(Stroke).svg" alt="иконка 'сердце'">
+          </li>
+        </ul>
+      </section>
+    </main>
+    <footer class="footer">
+      <h3 class="footer__copyright">&#169;2020 Mesto Russia</h3>
+    </footer>
+  </div>
 </body>
 </html>
