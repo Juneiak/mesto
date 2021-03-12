@@ -33,6 +33,8 @@
 @import url(../blocks/elements-table/__like-button/elements-table__like-button.css);
 @import url(../blocks/elements-table/__image/elements-table__image.css);
 @import url(../blocks/elements-table/__element/elements-table__element.css);
+@import url(../blocks/elements-table/__about/elements-table__about.css);
+
 
 @import url(../blocks/footer/footer.css);
 @import url(../blocks/footer/__copyright/footer__copyright.css);

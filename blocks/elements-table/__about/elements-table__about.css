@@ -1,0 +1,9 @@
+.elements-table__about {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 246px;
+  align-items: center;
+  margin: auto;
+  height: 100%;
+}

@@ -1,3 +1,14 @@
 .elements-table__element {
-  
+  background: #FFFFFF;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: column;
+  overflow: hidden;
+  width: 100%;
+  max-width: 282px;
+  min-width: 90%;
+  height: 100%;
+  max-height: 361px;
 }
