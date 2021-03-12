@@ -9,19 +9,16 @@
 </head>
 <body class="common">
   <div class="page">
-
     <section class="pop-up">
-      <img class="pop-up__close-button" src="./images/Close_Icon.svg" alt="Закрывающий крестик">
       <form class="pop-up__form" method="POST">
-        <div class="pop-up__form-container">
+        <fieldset class="pop-up__form-container">
           <h2 class="pop-up__title">Редактировать профиль</h2>
-          <fieldset class="pop-up__input-container">
-            <input class="pop-up__form-item" type="text" id="name" name="name" value="">
-            <input class="pop-up__form-item" type="text" id="about" name="about" value="">
-            <input class="pop-up__form-button" type="submit" value="Сохранить">
-          </fieldset>
-        </div>
+          <input class="pop-up__form-text-input" type="text" id="name" name="name" value="">
+          <input class="pop-up__form-text-input" type="text" id="about" name="about" value="">
+          <input class="pop-up__form-button" type="submit" value="Сохранить">
+        </fieldset>
       </form>
+      <img class="pop-up__close-button" src="./images/Close_Icon.svg" alt="Закрывающий крестик">
     </section>
 
     <header class="header">

@@ -4,10 +4,9 @@
 @import url(../blocks/page/page.css);
 
 @import url(../blocks/pop-up/pop-up.css);
-@import url(../blocks/pop-up/__title/);
-@import url(../blocks/pop-up/__input-container/);
+@import url(../blocks/pop-up/__title/pop-up__title.css);
 @import url(../blocks/pop-up/__form/pop-up__form.css);
-@import url(../blocks/pop-up/__form-item/pop-up__form-item.css);
+@import url(../blocks/pop-up/__form-text-input/pop-up__form-text-input.css);
 @import url(../blocks/pop-up/__form-container/pop-up__form-container.css);
 @import url(../blocks/pop-up/__form-button/pop-up__form-button.css);
 @import url(../blocks/pop-up/__close-button/pop-up__close-button.css);

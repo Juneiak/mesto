@@ -1,3 +1,10 @@
 .pop-up__form-container {
-  
+  border: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  max-width: 358px;
 }
