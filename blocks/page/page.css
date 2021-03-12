@@ -1,5 +1,6 @@
 .page {
   font-family: Inter;
+  width: 100%;
   max-width: 880px;
   min-width: 320px;
   display: flex;
