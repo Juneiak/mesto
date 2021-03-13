@@ -3,10 +3,17 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 49px 0 0;
 }
 
 @media screen and (max-width: 918px) {
   .elements {
     width: 88%;
+  }
+}
+
+@media screen and (max-width: 552px) {
+  .elements {
+    padding: 36px 0 0;
   }
 }

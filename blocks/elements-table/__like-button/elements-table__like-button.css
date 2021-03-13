@@ -1,4 +1,15 @@
 .elements-table__like-button {
   width: 22px;
   height: 19px;
+  background-image: url(../../../images/like-icon.svg);
+  border: none;
+  background-color: white;
 }
+
+.elements-table__like-button:focus {
+  outline: none;
+}
+
+.elements-table__like-button:active {
+  background-color: black;
+} 

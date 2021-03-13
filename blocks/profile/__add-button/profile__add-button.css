@@ -8,11 +8,21 @@
   box-sizing: border-box;
   width: 150px;
   height: 50px;
-  margin-left: auto;
+  grid-area: add-button;
 }
 
-@media screen and (max-width: 753px) {
-  .profile {
-    width: 88%;
+@media screen and (max-width: 807px) {
+  .profile__add-button  {
+    width: 100%;
+    justify-self: center;
+  }
+}
+
+@media screen and (max-width: 532px) {
+  .profile__add-button  {
+    width: 100%;
+    max-width: 282px;
+    justify-self: center;
+    background-size: 16px;
   }
 }

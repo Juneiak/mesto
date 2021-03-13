@@ -11,3 +11,10 @@
   height: 100%;
   position: relative;
 }
+
+@media screen and (max-width: 468px) {
+  .pop-up__form {
+    width: 88%;
+    max-height: 322px;
+  }
+}

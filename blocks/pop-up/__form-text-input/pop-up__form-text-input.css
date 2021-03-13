@@ -16,3 +16,9 @@
 .pop-up__form-text-input:focus {
   outline: none;
 }
+
+@media screen and (max-width: 415px) {
+  .pop-up__form-text-input {
+    margin-bottom: 18px;
+  }
+}
