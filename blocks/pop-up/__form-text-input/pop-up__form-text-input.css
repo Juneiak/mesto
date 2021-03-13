@@ -1,6 +1,6 @@
 .pop-up__form-text-input {
   border: none;
-  border-bottom: 1px solid #000000;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
   font-family: inherit;
   font-style: normal;
   font-weight: normal;
@@ -13,9 +13,6 @@
   padding: 0;
 }
 
-.pop-up__form-text-input:last-child {
-  margin-bottom: 0;
-}
 .pop-up__form-text-input:focus {
   outline: none;
 }
