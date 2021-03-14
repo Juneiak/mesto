@@ -4,7 +4,7 @@
   margin: 0;
   grid-area: info;
   position: relative;
-  max-width: 294px;
+  width: max-content;
 }
 
 @media screen and (max-width: 552px) {
