@@ -3,7 +3,7 @@
   height: 19px;
   background-image: url(../../../images/like-icon.svg);
   border: none;
-  background-color: white;
+  background-color: rgba(0, 0, 0, 0);
 }
 
 .elements-table__like-button:focus {

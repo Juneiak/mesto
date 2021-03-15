@@ -1,9 +1,22 @@
 .pop-up__close-button {
+  display: block;
   position: absolute;
-  right: -49px;
-  top: -49px;
+  right: -45px;
+  top: -55px;
   width: 56.5px;
   height: 56.5px;
+  box-sizing: border-box;
+  border: none;
+  padding: 0;
+  background-color: rgba(0, 0, 0, 0);
+  background-image: url(../../../images/Close_Icon.svg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.pop-up__close-button:focus {
+  outline: none;
 }
 
 @media screen and (max-width: 552px) {

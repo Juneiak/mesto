@@ -9,23 +9,12 @@
 </head>
 <body class="common">
   <div class="page">
-    <section class="pop-up">
-      <form class="pop-up__form" method="POST">
-        <fieldset class="pop-up__form-container">
-          <h2 class="pop-up__title">Редактировать профиль</h2>
-          <input class="pop-up__form-text-input" type="text" id="name" name="name" value="">
-          <input class="pop-up__form-text-input" type="text" id="about" name="about" value="">
-          <input class="pop-up__form-button button-animation" type="submit" value="Сохранить">
-        </fieldset>
-        <img class="pop-up__close-button button-animation" src="./images/Close_Icon.svg" alt="Закрывающий крестик">
-      </form>
-    </section>
 
     <header class="header">
       <img class="header__image" src="./images/Vector-2.svg" alt="Логотип 'mesto'">
     </header>
 
-    <div class="dividing-line"></div>
+    
 
     <main class="main">
       <section class="profile">
@@ -33,9 +22,9 @@
         <div class="profile__info">
           <h1 class="profile__name">Жак-Ив Кусто</h1>
           <p class="profile__about">Исследователь океана</p>
-          <div class="profile__edit-button button-animation"></div>
+          <button class="profile__edit-button button-animation" type="button"></button>
         </div>
-        <div class="profile__add-button button-animation"></div>
+        <button class="profile__add-button button-animation" type="button"></button>
       </section>
       
       <section class="elements">
@@ -43,51 +32,65 @@
           <li class="elements-table__element">
             <img class="elements-table__image" src="./images/duhtau1.jpg" alt="фотография горы Дыхтау">
             <div class="elements-table__about">
-              <p class="elements-table__place-name">Гора Дыхтау</p>
-              <button class="elements-table__like-button button-animation"></button>
+              <h2 class="elements-table__place-name">Гора Дыхтау</h2>
+              <button class="elements-table__like-button button-animation" type="button"></button>
             </div>
           </li>
           <li class="elements-table__element">
             <img class="elements-table__image" src="./images/arhuz.jpg" alt="фотография Архыза">
             <div class="elements-table__about">
-              <p class="elements-table__place-name">Архыз</p>
-              <button class="elements-table__like-button button-animation"></button>
+              <h2 class="elements-table__place-name">Архыз</h2>
+              <button class="elements-table__like-button button-animation" type="button"></button>
             </div>
           </li>
           <li class="elements-table__element">
             <img class="elements-table__image" src="./images/dombay.jpg" alt="фотография Домбая">
             <div class="elements-table__about">
-              <p class="elements-table__place-name">Домбай</p>
-              <button class="elements-table__like-button button-animation"></button>
+              <h2 class="elements-table__place-name">Домбай</h2>
+              <button class="elements-table__like-button button-animation" type="button"></button>
             </div>
           </li>
           <li class="elements-table__element">
             <img class="elements-table__image" src="./images/elbrus.jpg" alt="фотография горы Эльбруса">
             <div class="elements-table__about">
-              <p class="elements-table__place-name">Гора Эльбрус</p>
-              <button class="elements-table__like-button button-animation"></button>
+              <h2 class="elements-table__place-name">Гора Эльбрус</h2>
+              <button class="elements-table__like-button button-animation" type="button"></button>
             </div>
           </li>
           <li class="elements-table__element">
             <img class="elements-table__image" src="./images/kazbeg.jpg" alt="фотография Казбека">
             <div class="elements-table__about">
-              <p class="elements-table__place-name">Казбек</p>
-              <button class="elements-table__like-button button-animation"></button>
+              <h2 class="elements-table__place-name">Казбек</h2>
+              <button class="elements-table__like-button button-animation" type="button"></button>
             </div>
           </li>
           <li class="elements-table__element">
             <img class="elements-table__image" src="./images/karachaevsk.jpg" alt="фотография Карачаево-Черкесии">
             <div class="elements-table__about">
-              <p class="elements-table__place-name">Карачаево-Черкесии</p>
-              <button class="elements-table__like-button button-animation"></button>
+              <h2 class="elements-table__place-name">Карачаево-Черкесии</h2>
+              <button class="elements-table__like-button button-animation" type="button"></button>
             </div>
           </li>
         </ul>
       </section>
     </main>
+    
     <footer class="footer">
-      <h3 class="footer__copyright">&#169; 2020 Mesto Russia</h3>
+      <p class="footer__copyright">&#169; 2020 Mesto Russia</p>
     </footer>
+
+    <div class="pop-up">
+      <form class="pop-up__form" method="POST" name="info-change-form">
+        <fieldset class="pop-up__form-container">
+          <h2 class="pop-up__title">Редактировать профиль</h2>
+          <input class="pop-up__form-text-input" type="text" id="name" name="name" value="">
+          <input class="pop-up__form-text-input" type="text" id="about" name="about" value="">
+          <input class="pop-up__form-button button-animation" type="submit" value="Сохранить">
+        </fieldset>
+        <button class="pop-up__close-button button-animation" type="button"></button>
+      </form>
+    </div>
+    
   </div>
   <script src="./scripts/base-script.js"></script>
 </body>
