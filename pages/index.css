@@ -3,6 +3,8 @@
 @import url(../blocks/common/common.css);
 @import url(../blocks/page/page.css);
 @import url(../blocks/button-animation/button-animation.css);
+@import url(../blocks/button-animation/_blackout-level/button-animation_blackout-level_light.css);
+@import url(../blocks/button-animation/_blackout-level/button-animation_blackout-level_medium.css);
 
 @import url(../blocks/pop-up/pop-up.css);
 @import url(../blocks/pop-up/__title/pop-up__title.css);
