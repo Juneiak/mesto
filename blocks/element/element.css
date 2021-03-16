@@ -1,4 +1,4 @@
-.elements-table__element {
+.element {
   background: #FFFFFF;
   border-radius: 10px;
   display: flex;
@@ -9,6 +9,4 @@
   width: 100%;
   max-width: 282px;
   min-width: 225.6px;
-  min-height: 288.8px;
-  max-height: 361px;
 }

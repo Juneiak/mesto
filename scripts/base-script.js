@@ -22,7 +22,7 @@ function formSubmitHandler (evt) {
     evt.preventDefault();
     profileName.textContent = nameInput.value;
     profileAbout.textContent = aboutInput.value;
-    popUp.classList.remove('pop-up_opened');
+    closePopUp();
 }
 
 
