@@ -6,3 +6,19 @@
   max-height: 282px;
 }
 
+.element__image:hover {
+  cursor: pointer;
+}
+
+@media screen and (max-width: 918px) {
+  .element__image {
+    min-height: 230px;
+    max-height: 230px;
+  }
+}
+
+@media screen and (max-width: 550px) {
+  .element__image {
+    min-height: 282px;
+  }
+}
