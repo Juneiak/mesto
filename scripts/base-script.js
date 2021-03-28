@@ -12,7 +12,6 @@ const nameInput = document.querySelector('#name');
 const aboutInput = document.querySelector('#about');
 const profileName = document.querySelector('.profile__name');
 const profileAbout = document.querySelector('.profile__about');
-
 const elementTemplate = document.querySelector('#element').content;
 const elementsTable = document.querySelector('.elements__table');
 const initialCards = [
@@ -59,72 +58,66 @@ function editFormSubmitHandler (evt) {
 
 function addPhotos(database) {
   database.forEach( (item) => {
-    let photoLink = item.link
-    let placeName = item.name
-    let photoElement = elementTemplate.querySelector('.element').cloneNode(true);
-    addContent(photoElement, photoLink, placeName)
-    addLikeButton(photoElement)
-    addDeleteButton(photoElement);
-    addImagePopUp(photoElement, photoLink, placeName);
-    elementsTable.prepend(photoElement);
+    let photoLink = item.link;
+    let placeName = item.name;
+    let cardElement = getCardElement(photoLink, placeName);
+    renderCard(cardElement, elementsTable)
   })
 }
 addPhotos(initialCards);
 
-//function getCardElement(name, link) {
-//  let photoElement = elementTemplate.querySelector('.element').cloneNode(true);
-//  addContent(photoElement, photoLink, placeName)
-//  addLikeButton(photoElement)
-//  addDeleteButton(photoElement);
-//  addImagePopUp(photoElement, photoLink, placeName);
-//  
-//  
-//}
-
 function addFormSubmitHandler(evt) {
   evt.preventDefault();
-  let photoElement = elementTemplate.querySelector('.element').cloneNode(true);
   let photoLink = document.querySelector('#card-link').value;
   let placeName = document.querySelector('#card-name').value;
-  addContent(photoElement, photoLink, placeName)
-  addLikeButton(photoElement);
-  addDeleteButton(photoElement);
-  addImagePopUp(photoElement, photoLink, placeName);
-  elementsTable.prepend(photoElement)
+  let cardElement = getCardElement(photoLink, placeName);
+  renderCard(cardElement, elementsTable)
   closePopUp(addPopUp);
 }
 
-function addContent(element, photoLink, placeName) {
-  let imageElement = element.querySelector('.element__image');
-  imageElement.src = photoLink;
-  imageElement.alt = `фотография ${placeName}`;
-  element.querySelector('.element__place-name').textContent = placeName;
-  return element;
-}
+function getCardElement(link, name) {
+  let photoElement = elementTemplate.querySelector('.element').cloneNode(true);
+  addContent(photoElement, link, name)
+  addLikeButton(photoElement)
+  addDeleteButton(photoElement);
+  addImagePopUp(photoElement, link, name);
+  return photoElement;
 
-function addLikeButton(element) {
-  element.querySelector('.element__like-button').addEventListener('click', evt => {
-    evt.target.classList.toggle('element__like-button_active');
-  })
-}
-
-function addDeleteButton(element) {
-  const deleteButton = element.querySelector('.element__delete-button');
-  deleteButton.addEventListener('click', () => deleteButton.closest('.element').remove());
-}
-
-function addImagePopUp(element, photoLink, placeName) {
-  const popUp = element.querySelector('.element__image');
-  popUp.addEventListener('click', () => {
-    let imageElement = document.querySelector('.pop-up__image')
-    openPopUp(document.querySelector('#photo'));
+  function addContent(element, photoLink, placeName) {
+    let imageElement = element.querySelector('.element__image');
     imageElement.src = photoLink;
     imageElement.alt = `фотография ${placeName}`;
-    document.querySelector('.pop-up__caption').textContent = placeName;
-  })
-  return element;
+    element.querySelector('.element__place-name').textContent = placeName;
+    return element;
+  }
+
+  function addLikeButton(element) {
+    element.querySelector('.element__like-button').addEventListener('click', evt => {
+      evt.target.classList.toggle('element__like-button_active');
+    })
+  }
+
+  function addDeleteButton(element) {
+    const deleteButton = element.querySelector('.element__delete-button');
+    deleteButton.addEventListener('click', () => deleteButton.closest('.element').remove());
+  }
+
+  function addImagePopUp(element, photoLink, placeName) {
+    const popUp = element.querySelector('.element__image');
+    popUp.addEventListener('click', () => {
+      let imageElement = document.querySelector('.pop-up__image')
+      openPopUp(document.querySelector('#photo'));
+      imageElement.src = photoLink;
+      imageElement.alt = `фотография ${placeName}`;
+      document.querySelector('.pop-up__caption').textContent = placeName;
+    })
+    return element;
+  }
 }
 
+function renderCard(data, wrap) {
+  wrap.prepend(data); 
+}
 
 editFormElement.addEventListener('submit', editFormSubmitHandler);
 addFormElement.addEventListener('submit', addFormSubmitHandler);
