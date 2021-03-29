@@ -56,11 +56,42 @@ function editFormSubmitHandler (evt) {
   closePopUp(editPopUp);
 }
 
+function getCardElement(photoLink, placeName) {
+  const photoElement = elementTemplate.querySelector('.element').cloneNode(true);
+
+  const imageElement = photoElement.querySelector('.element__image');
+  imageElement.src = photoLink;
+  imageElement.alt = `фотография ${placeName}`;
+  photoElement.querySelector('.element__place-name').textContent = placeName;
+
+  photoElement.querySelector('.element__like-button').addEventListener('click', evt => {
+    evt.target.classList.toggle('element__like-button_active');
+  })
+
+  const deleteButton = photoElement.querySelector('.element__delete-button');
+  deleteButton.addEventListener('click', () => deleteButton.closest('.element').remove());
+  
+  const popUp = photoElement.querySelector('.element__image');
+  popUp.addEventListener('click', () => {
+    const popUpimage = document.querySelector('.pop-up__image');
+    openPopUp(document.querySelector('#photo'));
+    popUpimage.src = photoLink;
+    popUpimage.alt = `фотография ${placeName}`;
+    document.querySelector('.pop-up__caption').textContent = placeName;
+  })
+  return photoElement;
+}
+
+function renderCard(data, wrap) {
+  wrap.prepend(data);
+  addFormElement.reset();
+}
+
 function addPhotos(database) {
   database.forEach( (item) => {
-    let photoLink = item.link;
-    let placeName = item.name;
-    let cardElement = getCardElement(photoLink, placeName);
+    const photoLink = item.link;
+    const placeName = item.name;
+    const cardElement = getCardElement(photoLink, placeName);
     renderCard(cardElement, elementsTable)
   })
 }
@@ -68,55 +99,11 @@ addPhotos(initialCards);
 
 function addFormSubmitHandler(evt) {
   evt.preventDefault();
-  let photoLink = document.querySelector('#card-link').value;
-  let placeName = document.querySelector('#card-name').value;
-  let cardElement = getCardElement(photoLink, placeName);
+  const photoLink = document.querySelector('#card-link').value;
+  const placeName = document.querySelector('#card-name').value;
+  const cardElement = getCardElement(photoLink, placeName);
   renderCard(cardElement, elementsTable)
   closePopUp(addPopUp);
-}
-
-function getCardElement(link, name) {
-  let photoElement = elementTemplate.querySelector('.element').cloneNode(true);
-  addContent(photoElement, link, name)
-  addLikeButton(photoElement)
-  addDeleteButton(photoElement);
-  addImagePopUp(photoElement, link, name);
-  return photoElement;
-
-  function addContent(element, photoLink, placeName) {
-    let imageElement = element.querySelector('.element__image');
-    imageElement.src = photoLink;
-    imageElement.alt = `фотография ${placeName}`;
-    element.querySelector('.element__place-name').textContent = placeName;
-    return element;
-  }
-
-  function addLikeButton(element) {
-    element.querySelector('.element__like-button').addEventListener('click', evt => {
-      evt.target.classList.toggle('element__like-button_active');
-    })
-  }
-
-  function addDeleteButton(element) {
-    const deleteButton = element.querySelector('.element__delete-button');
-    deleteButton.addEventListener('click', () => deleteButton.closest('.element').remove());
-  }
-
-  function addImagePopUp(element, photoLink, placeName) {
-    const popUp = element.querySelector('.element__image');
-    popUp.addEventListener('click', () => {
-      let imageElement = document.querySelector('.pop-up__image')
-      openPopUp(document.querySelector('#photo'));
-      imageElement.src = photoLink;
-      imageElement.alt = `фотография ${placeName}`;
-      document.querySelector('.pop-up__caption').textContent = placeName;
-    })
-    return element;
-  }
-}
-
-function renderCard(data, wrap) {
-  wrap.prepend(data); 
 }
 
 editFormElement.addEventListener('submit', editFormSubmitHandler);
