@@ -84,7 +84,6 @@ function getCardElement(photoLink, placeName) {
 
 function renderCard(data, wrap) {
   wrap.prepend(data);
-  addFormElement.reset();
 }
 
 function addPhotos(database) {
@@ -104,6 +103,7 @@ function addFormSubmitHandler(evt) {
   const cardElement = getCardElement(photoLink, placeName);
   renderCard(cardElement, elementsTable)
   closePopUp(addPopUp);
+  addFormElement.reset();
 }
 
 editFormElement.addEventListener('submit', editFormSubmitHandler);
