@@ -14,6 +14,10 @@
 @import url(../blocks/pop-up/__form-button/pop-up__form-button.css);
 @import url(../blocks/pop-up/__close-button/pop-up__close-button.css);
 @import url(../blocks/pop-up/_opened/pop-up_opened.css);
+@import url(../blocks/pop-up/__form-text-input/_type/pop-up__form-text-input_type_error.css);
+@import url(../blocks/pop-up/__error/pop-up__error.css);
+@import url(../blocks/pop-up/__error/_visible/popup__error_visible.css);
+@import url(../blocks/pop-up/__form-button/_inactive/pop-up__form-button_inactive.css);
 
 @import url(../blocks/pop-up/__caption/pop-up__caption.css);
 @import url(../blocks/pop-up/__figure/pop-up__figure.css);
