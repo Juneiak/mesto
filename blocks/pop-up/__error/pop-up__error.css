@@ -6,6 +6,8 @@
   font-size: 12px;
   line-height: 1.25;
   display: block;
+  min-height: 14px;
   width: 100%;
   text-align: start;
+  visibility: hidden;
 }

@@ -41,8 +41,22 @@ const initialCards = [
   }
 ];
 
+function addAlternativeClose(popUp) {
+  popUp.addEventListener('click', evt => {
+    if (evt.target.classList.contains('pop-up')) {
+      closePopUp(popUp);
+    }
+  })
+  popUp.addEventListener('keydown', evt => {
+    if (evt.key === 'Escape') {
+      closePopUp(popUp)
+    }
+  })
+}
+
 function openPopUp(popUp) {
   popUp.classList.add('pop-up_opened');
+  addAlternativeClose(popUp);
 }
 
 function closePopUp(popUp) {

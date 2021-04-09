@@ -37,27 +37,27 @@
     </footer>
 
     <div class="pop-up" id='edit'>
-      <form class="pop-up__form" method="POST" name="info-change-form" id="edit-form">
+      <form class="pop-up__form" method="POST" novalidate name="info-change-form" id="edit-form">
         <fieldset class="pop-up__form-container">
           <h2 class="pop-up__title">Редактировать профиль</h2>
           <input class="pop-up__form-text-input" type="text" minlength="2" maxlength="40" id="name" name="name" value="" required placeholder="Имя">
-          <span class="pop-up__error name-error">ошибка</span>
+          <span class="pop-up__error popup__error_visible name-error">ошибка</span>
           <input class="pop-up__form-text-input" type="text" minlength="2" maxlength="200" id="about" name="about" value="" required placeholder="О себе">
-          <span class="pop-up__error about-error">ошибка</span>
-          <input class="pop-up__form-button button-animation button-animation_blackout-level_light" disabled type="submit" value="Сохранить" id="changes-save">
+          <span class="pop-up__error popup__error_visible about-error">ошибка</span>
+          <input class="pop-up__form-button button-animation button-animation_blackout-level_light" type="submit" value="Сохранить" id="changes-save">
         </fieldset>
         <button class="pop-up__close-button button-animation" type="button" id="close-edit"></button>
       </form>
     </div>
     
     <div class="pop-up" id="add">
-        <form class="pop-up__form" method="POST" name="photo-add-form" id="add-form">
+        <form class="pop-up__form" method="POST" novalidate name="photo-add-form" id="add-form">
           <fieldset class="pop-up__form-container">
             <h2 class="pop-up__title">Новое место</h2>
             <input class="pop-up__form-text-input" type="text" minlength="2" maxlength="30" id="card-name" name="card-name" value="" placeholder="Название" required>
             <span class="pop-up__error popup__error_visible card-name-error">ошибка</span>
             <input class="pop-up__form-text-input" type="url" id="card-link" name="card-link" value="" placeholder="Ссылка на картинку" required>
-            <span class="pop-up__error card-link-error" >ошибка</span>
+            <span class="pop-up__error popup__error_visible card-link-error" >ошибка</span>
             <input class="pop-up__form-button pop-up__form-button_inactive button-animation button-animation_blackout-level_light" disabled type="submit" value="Создать" id="photo-create">
           </fieldset>
           <button class="pop-up__close-button button-animation" type="button" id="close-add"></button>
