@@ -32,10 +32,12 @@ function closeByEsc(evt) {
   if (evt.key === 'Escape') {
     const openPopUp = document.querySelector('.pop-up_opened');
     closePopUp(openPopUp);
+    
   }
 }
 
 function openPopUp(popUp) {
+  enableValidation();
   popUp.classList.add('pop-up_opened');
   document.addEventListener('keydown', closeByEsc);
 }
