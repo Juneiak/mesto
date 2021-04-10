@@ -36,7 +36,7 @@
       <p class="footer__copyright">&copy; 2020 Mesto Russia</p>
     </footer>
 
-    <div class="pop-up" id='edit'>
+    <div class="pop-up" id='edit' tabindex="-1">
       <form class="pop-up__form" method="POST" novalidate name="info-change-form" id="edit-form">
         <fieldset class="pop-up__form-container">
           <h2 class="pop-up__title">Редактировать профиль</h2>
@@ -50,7 +50,7 @@
       </form>
     </div>
     
-    <div class="pop-up" id="add">
+    <div class="pop-up" id="add" tabindex="-1">
         <form class="pop-up__form" method="POST" novalidate name="photo-add-form" id="add-form">
           <fieldset class="pop-up__form-container">
             <h2 class="pop-up__title">Новое место</h2>
@@ -64,7 +64,7 @@
         </form>
       </div>
 
-      <div class="pop-up" id="photo">
+      <div class="pop-up" id="photo" tabindex="-1">
         <figure class="pop-up__figure">
           <button class="pop-up__close-button button-animation" type="button" id="photo-close"></button>
           <img class="pop-up__image" src="./images/dombay.jpg" alt="фотография">
