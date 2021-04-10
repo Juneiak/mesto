@@ -44,7 +44,7 @@
           <span class="pop-up__error name-error"></span>
           <input class="pop-up__form-text-input" type="text" minlength="2" maxlength="200" id="about" name="about" value="" required placeholder="О себе">
           <span class="pop-up__error about-error"></span>
-          <input class="pop-up__form-button button-animation button-animation_blackout-level_light" type="submit" value="Сохранить" id="changes-save">
+          <button class="pop-up__form-button button-animation button-animation_blackout-level_light" type="submit" id="changes-save">Сохранить</button>
         </fieldset>
         <button class="pop-up__close-button button-animation" type="button" id="close-edit"></button>
       </form>
@@ -58,7 +58,7 @@
             <span class="pop-up__error card-name-error"></span>
             <input class="pop-up__form-text-input" type="url" id="card-link" name="card-link" value="" placeholder="Ссылка на картинку" required>
             <span class="pop-up__error card-link-error" ></span>
-            <input class="pop-up__form-button pop-up__form-button_inactive button-animation button-animation_blackout-level_light" disabled type="submit" value="Создать" id="photo-create">
+            <button class="pop-up__form-button pop-up__form-button_inactive button-animation button-animation_blackout-level_light" disabled type="submit" id="photo-create">Создать</button>
           </fieldset>
           <button class="pop-up__close-button button-animation" type="button" id="close-add"></button>
         </form>
@@ -83,6 +83,7 @@
         </div>
       </li>
   </template>
+  <script src="./scripts/initial-cards.js"></script>
   <script src="./scripts/base-script.js"></script>
   <script src="./scripts/form-validation.js"></script>
 </body>
