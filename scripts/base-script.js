@@ -37,7 +37,6 @@ function closeByEsc(evt) {
 }
 
 function openPopUp(popUp) {
-  enableValidation();
   popUp.classList.add('pop-up_opened');
   document.addEventListener('keydown', closeByEsc);
 }
@@ -100,7 +99,9 @@ function handlerAddFormSubmit(evt) {
   renderCard(cardElement, elementsTable);
   closePopUp(addPopUp);
   addFormElement.reset();
-  enableValidation();
+  const inputElementList = Array.from(addFormElement.querySelectorAll(settings.inputSelector));
+  const buttonElement = addFormElement.querySelector(settings.submitButtonSelector);
+  toggleButtonState(inputElementList, buttonElement);
 }
 
 addOverlayClose(popUps);
