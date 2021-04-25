@@ -1,6 +1,6 @@
 const editPopUp = document.querySelector('#edit');
 const addPopUp = document.querySelector('#add');
-const photoPopUp = document.querySelector('#photo');
+export const photoPopUp = document.querySelector('#photo');
 const profileEditButton = document.querySelector('.profile__edit-button');
 const photoAddButton = document.querySelector('.profile__add-button');
 const editPopUpCloseButton = document.querySelector('#close-edit');
@@ -12,11 +12,12 @@ const nameInput = document.querySelector('#name');
 const aboutInput = document.querySelector('#about');
 const profileName = document.querySelector('.profile__name');
 const profileAbout = document.querySelector('.profile__about');
-const elementTemplate = document.querySelector('#element').content;
 const elementsTable = document.querySelector('.elements__table');
-const popUpimage = document.querySelector('.pop-up__image');
-const popUpCaption = document.querySelector('.pop-up__caption');
 const popUps = Array.from(document.querySelectorAll('.pop-up'));
+import {initialCards} from './data.js';
+//import FormValidator from './FormValidator.js';
+import Card from './Card.js'
+
 
 function addOverlayClose(popUps) {
   popUps.forEach(popUp => {
@@ -32,11 +33,10 @@ function closeByEsc(evt) {
   if (evt.key === 'Escape') {
     const openPopUp = document.querySelector('.pop-up_opened');
     closePopUp(openPopUp);
-    
   }
 }
 
-function openPopUp(popUp) {
+export function openPopUp(popUp) {
   popUp.classList.add('pop-up_opened');
   document.addEventListener('keydown', closeByEsc);
 }
@@ -53,30 +53,6 @@ function handlerEditFormSubmit(evt) {
   closePopUp(editPopUp);
 }
 
-function getCardElement(photoLink, placeName) {
-  const photoElement = elementTemplate.querySelector('.element').cloneNode(true);
-
-  const imageElement = photoElement.querySelector('.element__image');
-  imageElement.src = photoLink;
-  imageElement.alt = `фотография ${placeName}`;
-  photoElement.querySelector('.element__place-name').textContent = placeName;
-
-  photoElement.querySelector('.element__like-button').addEventListener('click', evt => {
-    evt.target.classList.toggle('element__like-button_active');
-  })
-
-  const deleteButton = photoElement.querySelector('.element__delete-button');
-  deleteButton.addEventListener('click', () => deleteButton.closest('.element').remove());
-  
-  imageElement.addEventListener('click', () => {
-    openPopUp(photoPopUp);
-    popUpimage.src = photoLink;
-    popUpimage.alt = `фотография ${placeName}`;
-    popUpCaption.textContent = placeName;
-  })
-  return photoElement;
-}
-
 function renderCard(data, wrap) {
   wrap.prepend(data);
 }
@@ -85,25 +61,27 @@ function addPhotos(database) {
   database.forEach( (item) => {
     const photoLink = item.link;
     const placeName = item.name;
-    const cardElement = getCardElement(photoLink, placeName);
+    const card = new Card(photoLink, placeName, '.element');
+    const cardElement = card.getCardElement();
     renderCard(cardElement, elementsTable);
   });
 }
-addPhotos(initialCards);
 
 function handlerAddFormSubmit(evt) {
   evt.preventDefault();
   const photoLink = document.querySelector('#card-link').value;
   const placeName = document.querySelector('#card-name').value;
-  const cardElement = getCardElement(photoLink, placeName);
+  const card = new Card(photoLink, placeName, '.element');
+  const cardElement = card.getCardElement();
   renderCard(cardElement, elementsTable);
   closePopUp(addPopUp);
   addFormElement.reset();
-  const inputElementList = Array.from(addFormElement.querySelectorAll(settings.inputSelector));
-  const buttonElement = addFormElement.querySelector(settings.submitButtonSelector);
-  toggleButtonState(inputElementList, buttonElement);
+  //const inputElementList = Array.from(addFormElement.querySelectorAll(settings.inputSelector));
+  //const buttonElement = addFormElement.querySelector(settings.submitButtonSelector);
+  //toggleButtonState(inputElementList, buttonElement);
 }
 
+addPhotos(initialCards);
 addOverlayClose(popUps);
 editFormElement.addEventListener('submit', handlerEditFormSubmit);
 addFormElement.addEventListener('submit', handlerAddFormSubmit);
