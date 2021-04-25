@@ -27,13 +27,12 @@ export default class Card {
     _addListeners() {
         this._photoElement.querySelector('.element__like-button').addEventListener('click', evt => {
             evt.target.classList.toggle('element__like-button_active');
+        });
 
         const deleteButton = this._photoElement.querySelector('.element__delete-button');
-        deleteButton.addEventListener('click', () => {
-            console.log(deleteButton.closest('.element'))
-            deleteButton.closest('.element').remove()
-        })
-        })
+        deleteButton.addEventListener('click', () => deleteButton.closest('.element').remove()
+        );
+        
         this._imageElement.addEventListener('click', () => this._handlerOpenPopUp());
     }
     
@@ -43,5 +42,4 @@ export default class Card {
         this._addListeners();
         return this._photoElement;
     }
-
 }

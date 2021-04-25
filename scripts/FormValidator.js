@@ -1,4 +1,4 @@
-const settings = {
+export const settings = {
     fieldSetSelector: '.pop-up__form-container',
     inputSelector: '.pop-up__form-text-input',
     submitButtonSelector: '.pop-up__form-button',
@@ -7,7 +7,7 @@ const settings = {
     errorClass: 'pop-up__error_visible'
   };
 
-export default class FormValidator {
+export class FormValidator {
     constructor(settings, formElement) {
         this._settings = settings;
         this._formElement = formElement;
@@ -31,7 +31,7 @@ export default class FormValidator {
         if (inputElement.validity.valid) {
             this._hideInputError(fieldSet, inputElement);
         } else {
-            this._showInputError(fieldSet, inputElement, inputElement.validationMessage)
+            this._showInputError(fieldSet, inputElement, inputElement.validationMessage);
         };
     };
 
@@ -70,13 +70,13 @@ export default class FormValidator {
         const fieldSetList = Array.from(this._formElement.querySelectorAll(this._settings.fieldSetSelector));
         fieldSetList.forEach(fieldSet => {
             this._setEventListeners(fieldSet);
-        })
-    }
+        });
+    };
 
-}
+};
 
 const formList = Array.from(document.querySelectorAll('.pop-up__form'));
 formList.forEach(formElement => {
     const formForValidate = new FormValidator(settings, formElement);
     formForValidate.enableValidation();
-})
+});

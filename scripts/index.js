@@ -15,9 +15,7 @@ const profileAbout = document.querySelector('.profile__about');
 const elementsTable = document.querySelector('.elements__table');
 const popUps = Array.from(document.querySelectorAll('.pop-up'));
 import {initialCards} from './data.js';
-//import FormValidator from './FormValidator.js';
 import Card from './Card.js'
-
 
 function addOverlayClose(popUps) {
   popUps.forEach(popUp => {
@@ -33,29 +31,29 @@ function closeByEsc(evt) {
   if (evt.key === 'Escape') {
     const openPopUp = document.querySelector('.pop-up_opened');
     closePopUp(openPopUp);
-  }
-}
+  };
+};
 
 export function openPopUp(popUp) {
   popUp.classList.add('pop-up_opened');
   document.addEventListener('keydown', closeByEsc);
-}
+};
 
 function closePopUp(popUp) {
   popUp.classList.remove('pop-up_opened');
   document.removeEventListener('keydown', closeByEsc);
-}
+};
 
 function handlerEditFormSubmit(evt) {
   evt.preventDefault();
   profileName.textContent = nameInput.value;
   profileAbout.textContent = aboutInput.value;
   closePopUp(editPopUp);
-}
+};
 
 function renderCard(data, wrap) {
   wrap.prepend(data);
-}
+};
 
 function addPhotos(database) {
   database.forEach( (item) => {
@@ -65,7 +63,7 @@ function addPhotos(database) {
     const cardElement = card.getCardElement();
     renderCard(cardElement, elementsTable);
   });
-}
+};
 
 function handlerAddFormSubmit(evt) {
   evt.preventDefault();
@@ -76,10 +74,7 @@ function handlerAddFormSubmit(evt) {
   renderCard(cardElement, elementsTable);
   closePopUp(addPopUp);
   addFormElement.reset();
-  //const inputElementList = Array.from(addFormElement.querySelectorAll(settings.inputSelector));
-  //const buttonElement = addFormElement.querySelector(settings.submitButtonSelector);
-  //toggleButtonState(inputElementList, buttonElement);
-}
+};
 
 addPhotos(initialCards);
 addOverlayClose(popUps);
