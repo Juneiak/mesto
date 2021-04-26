@@ -64,9 +64,6 @@ export class FormValidator {
     };
 
     enableValidation() {
-        this._formElement.addEventListener('submit', evt => {
-            evt.preventDefault();
-        });
         const fieldSetList = Array.from(this._formElement.querySelectorAll(this._settings.fieldSetSelector));
         fieldSetList.forEach(fieldSet => {
             this._setEventListeners(fieldSet);
@@ -74,12 +71,12 @@ export class FormValidator {
     };
 
 };
+
 export function validate() {
     const formList = Array.from(document.querySelectorAll('.pop-up__form'));
     formList.forEach(formElement => {
         const formForValidate = new FormValidator(settings, formElement);
         formForValidate.enableValidation();
     });
-    console.log('validate');
 }
 validate();

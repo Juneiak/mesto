@@ -63,27 +63,23 @@ function handlerAddFormSubmit(evt) {
   renderCard(cardElement, elementsTable);
   closePopUp(addPopUp);
   addFormElement.reset();
-  validate();
 };
 
 renderInitialCards(initialCards);
 addOverlayClose(popUps);
 editFormElement.addEventListener('submit', handlerEditFormSubmit);
 addFormElement.addEventListener('submit', handlerAddFormSubmit);
-photoAddButton.addEventListener('click', () => openPopUp(addPopUp));
-editPopUpCloseButton.addEventListener('click', () => {
-    closePopUp(editPopUp);
-    editFormElement.reset();
-});
-addPopUpCloseButton.addEventListener('click', () => {
-    closePopUp(addPopUp);
+photoAddButton.addEventListener('click', () => {
     addFormElement.reset();
+    validate();
+    openPopUp(addPopUp);
 });
+editPopUpCloseButton.addEventListener('click', () => closePopUp(editPopUp));
+addPopUpCloseButton.addEventListener('click', () => closePopUp(addPopUp));
 photoPopUpCloseButton.addEventListener('click', () => closePopUp(photoPopUp));
 profileEditButton.addEventListener('click', () => {
   nameInput.value = profileName.textContent;
   aboutInput.value = profileAbout.textContent;
-  validate();
   openPopUp(editPopUp);
   }
 );
