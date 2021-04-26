@@ -17,7 +17,7 @@ import {initialCards} from './data.js';
 import Card from './Card.js';
 import {photoPopUp} from '../utils/constants.js';
 import {openPopUp, closePopUp} from '../utils/utils.js';
-import {validate} from './FormValidator.js';
+import {validateForm} from './FormValidator.js';
 
 function addOverlayClose(popUps) {
   popUps.forEach(popUp => {
@@ -41,9 +41,9 @@ function renderCard(data, wrap) {
 };
 
 function getCard(photoLink, placeName) {
-    const templateSelector = '.element';
-    const card = new Card(photoLink, placeName, templateSelector)
-    return card.getCardElement()
+  const templateSelector = '.element';
+  const card = new Card(photoLink, placeName, templateSelector)
+  return card.getCardElement()
 }
 
 function renderInitialCards(database) {
@@ -65,14 +65,17 @@ function handlerAddFormSubmit(evt) {
   addFormElement.reset();
 };
 
+const validatedAddForm = validateForm(addFormElement);
+const validatedEditForm = validateForm(editFormElement);
+
 renderInitialCards(initialCards);
 addOverlayClose(popUps);
 editFormElement.addEventListener('submit', handlerEditFormSubmit);
 addFormElement.addEventListener('submit', handlerAddFormSubmit);
 photoAddButton.addEventListener('click', () => {
-    addFormElement.reset();
-    validate();
-    openPopUp(addPopUp);
+  addFormElement.reset();
+  validatedAddForm.checkValidation();
+  openPopUp(addPopUp);
 });
 editPopUpCloseButton.addEventListener('click', () => closePopUp(editPopUp));
 addPopUpCloseButton.addEventListener('click', () => closePopUp(addPopUp));
@@ -80,6 +83,7 @@ photoPopUpCloseButton.addEventListener('click', () => closePopUp(photoPopUp));
 profileEditButton.addEventListener('click', () => {
   nameInput.value = profileName.textContent;
   aboutInput.value = profileAbout.textContent;
+  validatedEditForm.checkValidation();
   openPopUp(editPopUp);
   }
 );
