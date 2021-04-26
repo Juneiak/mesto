@@ -74,9 +74,12 @@ export class FormValidator {
     };
 
 };
-
-const formList = Array.from(document.querySelectorAll('.pop-up__form'));
-formList.forEach(formElement => {
-    const formForValidate = new FormValidator(settings, formElement);
-    formForValidate.enableValidation();
-});
+export function validate() {
+    const formList = Array.from(document.querySelectorAll('.pop-up__form'));
+    formList.forEach(formElement => {
+        const formForValidate = new FormValidator(settings, formElement);
+        formForValidate.enableValidation();
+    });
+    console.log('validate');
+}
+validate();

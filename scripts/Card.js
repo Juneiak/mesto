@@ -1,7 +1,8 @@
 const elementTemplate = document.querySelector('#element').content;
 const popUpimage = document.querySelector('.pop-up__image');
 const popUpCaption = document.querySelector('.pop-up__caption');
-import {openPopUp, photoPopUp} from './index.js';
+import {openPopUp} from '../utils/utils.js';
+import {photoPopUp} from '../utils/constants.js';
 
 export default class Card {
     constructor(photoLink, placeName, templateSelector) {
@@ -17,7 +18,7 @@ export default class Card {
         openPopUp(photoPopUp);
     }
     
-    _addInfo() {
+    _addImageInfo() {
         this._imageElement = this._photoElement.querySelector('.element__image');
         this._imageElement.src = this._photoLink;
         this._imageElement.alt = `фотография ${this._placeName}`;
@@ -38,7 +39,7 @@ export default class Card {
     
     getCardElement() {
         this._photoElement = elementTemplate.querySelector(this._templateSelector).cloneNode(true);
-        this._addInfo();
+        this._addImageInfo();
         this._addListeners();
         return this._photoElement;
     }

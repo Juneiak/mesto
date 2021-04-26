@@ -1,6 +1,5 @@
 const editPopUp = document.querySelector('#edit');
 const addPopUp = document.querySelector('#add');
-export const photoPopUp = document.querySelector('#photo');
 const profileEditButton = document.querySelector('.profile__edit-button');
 const photoAddButton = document.querySelector('.profile__add-button');
 const editPopUpCloseButton = document.querySelector('#close-edit');
@@ -15,7 +14,10 @@ const profileAbout = document.querySelector('.profile__about');
 const elementsTable = document.querySelector('.elements__table');
 const popUps = Array.from(document.querySelectorAll('.pop-up'));
 import {initialCards} from './data.js';
-import Card from './Card.js'
+import Card from './Card.js';
+import {photoPopUp} from '../utils/constants.js';
+import {openPopUp, closePopUp} from '../utils/utils.js';
+import {validate} from './FormValidator.js';
 
 function addOverlayClose(popUps) {
   popUps.forEach(popUp => {
@@ -25,23 +27,6 @@ function addOverlayClose(popUps) {
       };
     });
   });
-};
-
-function closeByEsc(evt) {
-  if (evt.key === 'Escape') {
-    const openPopUp = document.querySelector('.pop-up_opened');
-    closePopUp(openPopUp);
-  };
-};
-
-export function openPopUp(popUp) {
-  popUp.classList.add('pop-up_opened');
-  document.addEventListener('keydown', closeByEsc);
-};
-
-function closePopUp(popUp) {
-  popUp.classList.remove('pop-up_opened');
-  document.removeEventListener('keydown', closeByEsc);
 };
 
 function handlerEditFormSubmit(evt) {
@@ -55,12 +40,17 @@ function renderCard(data, wrap) {
   wrap.prepend(data);
 };
 
-function addPhotos(database) {
+function getCard(photoLink, placeName) {
+    const templateSelector = '.element';
+    const card = new Card(photoLink, placeName, templateSelector)
+    return card.getCardElement()
+}
+
+function renderInitialCards(database) {
   database.forEach( (item) => {
     const photoLink = item.link;
     const placeName = item.name;
-    const card = new Card(photoLink, placeName, '.element');
-    const cardElement = card.getCardElement();
+    const cardElement = getCard(photoLink, placeName);
     renderCard(cardElement, elementsTable);
   });
 };
@@ -69,24 +59,31 @@ function handlerAddFormSubmit(evt) {
   evt.preventDefault();
   const photoLink = document.querySelector('#card-link').value;
   const placeName = document.querySelector('#card-name').value;
-  const card = new Card(photoLink, placeName, '.element');
-  const cardElement = card.getCardElement();
+  const cardElement = getCard(photoLink, placeName);
   renderCard(cardElement, elementsTable);
   closePopUp(addPopUp);
   addFormElement.reset();
+  validate();
 };
 
-addPhotos(initialCards);
+renderInitialCards(initialCards);
 addOverlayClose(popUps);
 editFormElement.addEventListener('submit', handlerEditFormSubmit);
 addFormElement.addEventListener('submit', handlerAddFormSubmit);
 photoAddButton.addEventListener('click', () => openPopUp(addPopUp));
-editPopUpCloseButton.addEventListener('click', () => closePopUp(editPopUp));
-addPopUpCloseButton.addEventListener('click', () => closePopUp(addPopUp));
+editPopUpCloseButton.addEventListener('click', () => {
+    closePopUp(editPopUp);
+    editFormElement.reset();
+});
+addPopUpCloseButton.addEventListener('click', () => {
+    closePopUp(addPopUp);
+    addFormElement.reset();
+});
 photoPopUpCloseButton.addEventListener('click', () => closePopUp(photoPopUp));
 profileEditButton.addEventListener('click', () => {
   nameInput.value = profileName.textContent;
   aboutInput.value = profileAbout.textContent;
+  validate();
   openPopUp(editPopUp);
   }
 );
