@@ -1,1 +1,53 @@
-export const photoPopUp = document.querySelector('#photo');
+export const photoPopupSelector = '#photo';
+export const editPopupSelector = '#edit';
+export const addPopupSelector = '#add';
+export const profileEditButton = document.querySelector('.profile__edit-button');
+export const photoAddButton = document.querySelector('.profile__add-button');
+export const editPopUpCloseButton = document.querySelector('#close-edit');
+export const addPopUpCloseButton = document.querySelector('#close-add');
+export const photoPopUpCloseButton = document.querySelector('#photo-close');
+export const editFormElement = document.querySelector('#edit-form');
+export const addFormElement = document.querySelector('#add-form');
+export const nameInput = document.querySelector('#name');
+export const aboutInput = document.querySelector('#about');
+export const profileNameSelector = '.profile__name';
+export const profileAboutSelector = '.profile__about';
+export const cardsTableSelector = '.elements__table';
+export const popups = Array.from(document.querySelectorAll('.pop-up'));
+export const cardTemplateSelector = '.element';
+
+export const settings = {
+  fieldSetSelector: '.pop-up__form-container',
+  inputSelector: '.pop-up__form-text-input',
+  submitButtonSelector: '.pop-up__form-button',
+  inactiveButtonClass: 'pop-up__form-button_inactive',
+  inputErrorClass: 'pop-up__form-text-input_type_error',
+  errorClass: 'pop-up__error_visible'
+};
+
+export const initialCards = [
+  {
+    name: 'Архыз',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
+  },
+  {
+    name: 'Челябинская область',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
+  },
+  {
+    name: 'Иваново',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
+  },
+  {
+    name: 'Камчатка',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
+  },
+  {
+    name: 'Холмогорский район',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
+  },
+  {
+    name: 'Байкал',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
+  }
+];

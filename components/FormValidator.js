@@ -1,13 +1,4 @@
-export const settings = {
-  fieldSetSelector: '.pop-up__form-container',
-  inputSelector: '.pop-up__form-text-input',
-  submitButtonSelector: '.pop-up__form-button',
-  inactiveButtonClass: 'pop-up__form-button_inactive',
-  inputErrorClass: 'pop-up__form-text-input_type_error',
-  errorClass: 'pop-up__error_visible'
-};
-
-class FormValidator {
+export default class FormValidator {
   constructor(settings, formElement) {
     this._settings = settings;
     this._formElement = formElement;
@@ -64,7 +55,6 @@ class FormValidator {
   };
 
   enableValidation() {
-    console.log(this._formElement)
     this.fieldSetList = Array.from(this._formElement.querySelectorAll(this._settings.fieldSetSelector));
     this.fieldSetList.forEach(fieldSet => {
       this._setEventListeners(fieldSet);
@@ -82,9 +72,3 @@ class FormValidator {
     });
   };
 };
-
-export function validateForm(formElement) {
-  const validatedForm = new FormValidator(settings, formElement);
-  validatedForm.enableValidation();
-  return validatedForm
-}

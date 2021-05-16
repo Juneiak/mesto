@@ -11,13 +11,13 @@ const nameInput = document.querySelector('#name');
 const aboutInput = document.querySelector('#about');
 const profileName = document.querySelector('.profile__name');
 const profileAbout = document.querySelector('.profile__about');
-const elementsTable = document.querySelector('.elements__table');
+const cardsTable = document.querySelector('.elements__table');
 const popUps = Array.from(document.querySelectorAll('.pop-up'));
-import {initialCards} from './data.js';
-import Card from './Card.js';
+import {initialCards} from '../utils/data.js';
+import Card from '../components/Card.js.js';
 import {photoPopUp} from '../utils/constants.js';
 import {openPopUp, closePopUp} from '../utils/utils.js';
-import {validateForm} from './FormValidator.js';
+import {validateForm} from '../components/FormValidator.js.js';
 
 function addOverlayClose(popUps) {
   popUps.forEach(popUp => {
@@ -51,7 +51,7 @@ function renderInitialCards(database) {
     const photoLink = item.link;
     const placeName = item.name;
     const cardElement = getCard(photoLink, placeName);
-    renderCard(cardElement, elementsTable);
+    renderCard(cardElement, cardsTable); 
   });
 };
 
@@ -60,7 +60,7 @@ function handlerAddFormSubmit(evt) {
   const photoLink = document.querySelector('#card-link').value;
   const placeName = document.querySelector('#card-name').value;
   const cardElement = getCard(photoLink, placeName);
-  renderCard(cardElement, elementsTable);
+  renderCard(cardElement, cardsTable); 
   closePopUp(addPopUp);
   addFormElement.reset();
 };
@@ -80,6 +80,7 @@ photoAddButton.addEventListener('click', () => {
 editPopUpCloseButton.addEventListener('click', () => closePopUp(editPopUp));
 addPopUpCloseButton.addEventListener('click', () => closePopUp(addPopUp));
 photoPopUpCloseButton.addEventListener('click', () => closePopUp(photoPopUp));
+
 profileEditButton.addEventListener('click', () => {
   nameInput.value = profileName.textContent;
   aboutInput.value = profileAbout.textContent;
