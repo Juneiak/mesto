@@ -9,6 +9,8 @@ https://juneiak.github.io/mesto/index.html
 -HTML5
 -CSS3
 -javaScript
+-ООП
+-Webpack
 
 ------------
 
