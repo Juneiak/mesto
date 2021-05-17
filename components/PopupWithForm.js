@@ -29,5 +29,4 @@ export default class PopupWithForm extends Popup {
     const form = this._popup.querySelector('.pop-up__form');
     form.reset()
   }
-
 }

@@ -19,13 +19,12 @@ export default class Card {
         });
 
         const deleteButton = this._photoElement.querySelector('.element__delete-button');
-        deleteButton.addEventListener('click', () => deleteButton.closest('.element').remove()
-        );
+        deleteButton.addEventListener('click', () => deleteButton.closest('.element').remove());
         
         this._imageElement.addEventListener('click', () =>{
           this._handleCardClick(this._photoLink, this._placeName);
         });
-    }
+    };
 
     _getTemplate() {
       const elementTemplate = document
@@ -34,12 +33,12 @@ export default class Card {
       .querySelector(this._templateSelector)
       .cloneNode(true);
       return elementTemplate
-    }
+    };
     
     getCardElement() {
-        this._photoElement = this._getTemplate()
+        this._photoElement = this._getTemplate();
         this._addImageInfo();
         this._addListeners();
         return this._photoElement;
-    }
-}
+    };
+};

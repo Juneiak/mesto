@@ -17,5 +17,4 @@ export default class UserInfo {
     this._profileName.textContent = profileData['name'];
     this._profileAbout.textContent = profileData['about'];
   }
-
 }

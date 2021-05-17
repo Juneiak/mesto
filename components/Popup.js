@@ -5,13 +5,11 @@ export default class Popup {
 
   open() {
     this._popup.classList.add('pop-up_opened');
-    
   };
 
   close() {
     this._popup.classList.remove('pop-up_opened');
   }
-  
 
   setEventListeners() {
     const closeButton = this._popup.querySelector('.pop-up__close-button');

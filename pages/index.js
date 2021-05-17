@@ -22,13 +22,48 @@ import {
   settings
 } from '../utils/constants.js';
 
+
 //userInfo
 const userInfo = new UserInfo(profileNameSelector, profileAboutSelector);
 
 
+//add card
+const cardsList = new Section({
+  items: initialCards,
+  renderer: (item) => {
+    const card =  new Card({
+      photoLink: item.link,
+      placeName: item.name,
+      handleCardClick: (link, name) => photoPopup.open(link, name)
+    },
+    cardTemplateSelector);
+    const newCard = card.getCardElement();
+    cardsList.setItem(newCard);
+    }
+  }, 
+  cardsTableSelector
+);
+cardsList.renderItems();
+
+
 //popups
 const photoPopup = new PopupWithImage(photoPopupSelector);
-const addFormPopup = new PopupWithForm(addPopupSelector); ////
+
+const addFormPopup = new PopupWithForm({
+  popupSelector: addPopupSelector,
+  submitHandler: (inputData) => {
+    const card = new Card({
+      photoLink: inputData['card-link'],
+      placeName: inputData['card-name'],
+      handleCardClick: (link, name) => photoPopup.open(link, name)
+    },
+    cardTemplateSelector);
+    const newCard = card.getCardElement();
+    cardsList.setItem(newCard);
+    addFormPopup.close();
+  }
+});
+
 const editFormPopup = new PopupWithForm({
   popupSelector: editPopupSelector,
   submitHandler: (inputData) => {
@@ -36,10 +71,6 @@ const editFormPopup = new PopupWithForm({
     editFormPopup.close();
   }
 });
-
-photoPopup.setEventListeners()
-//addFormPopup.setEventListeners()
-editFormPopup.setEventListeners()
 
 
 //validate
@@ -52,28 +83,11 @@ const validatedAddForm = validateForm(addFormElement);
 const validatedEditForm = validateForm(editFormElement);
 
 
-//add card
-const cardsList = new Section({
-  items: initialCards,
-  renderer: (item) => {
-    const card =  new Card({
-      photoLink: item.link,
-      placeName: item.name,
-      handleCardClick: (link, name) => {
-        photoPopup.open(link, name)
-      }
-    },
-    cardTemplateSelector);
-    const newCard = card.getCardElement();
-    cardsList.setItem(newCard);
-    }
-  }, 
-  cardsTableSelector
-);
-cardsList.renderItems();
-
-
 //set listeners
+photoPopup.setEventListeners()
+addFormPopup.setEventListeners()
+editFormPopup.setEventListeners()
+
 profileEditButton.addEventListener('click', () => {
   const userCurrentInfo = userInfo.getUserInfo();
   nameInput.value = userCurrentInfo['name'];
@@ -84,7 +98,6 @@ profileEditButton.addEventListener('click', () => {
 );
 
 photoAddButton.addEventListener('click', () => {
-  //addFormElement.reset();
   validatedAddForm.checkValidation();
-  //openPopUp(addPopUp);
+  addFormPopup.open();
 });

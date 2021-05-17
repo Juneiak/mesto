@@ -14,5 +14,4 @@ export default class Section {
   setItem(element) {
     this._containerSelector.prepend(element);
   };
-
 }

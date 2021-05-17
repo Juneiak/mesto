@@ -13,5 +13,4 @@ export default class PopupWithImage extends Popup {
     popUpCaption.textContent = placeName;
     super.open()
   }
-
 }
