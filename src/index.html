@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="author" content="Алан Ибатуллин">
+
   <title>Mesto</title>
 </head>
 <body class="common">
@@ -51,9 +52,9 @@
         <form class="pop-up__form" method="POST" novalidate name="photo-add-form" id="add-form">
           <fieldset class="pop-up__form-container">
             <h2 class="pop-up__title">Новое место</h2>
-            <input class="pop-up__form-text-input" type="text" minlength="2" maxlength="30" id="card-name" name="card-name" value="" placeholder="Название" required>
+            <input class="pop-up__form-text-input" type="text" minlength="2" maxlength="30" id="card-name" name="name" value="" placeholder="Название" required>
             <span class="pop-up__error card-name-error"></span>
-            <input class="pop-up__form-text-input" type="url" id="card-link" name="card-link" value="" placeholder="Ссылка на картинку" required>
+            <input class="pop-up__form-text-input" type="url" id="card-link" name="link" value="" placeholder="Ссылка на картинку" required>
             <span class="pop-up__error card-link-error" ></span>
             <button class="pop-up__form-button pop-up__form-button_inactive button-animation button-animation_blackout-level_light" disabled type="submit" id="photo-create">Создать</button>
           </fieldset>

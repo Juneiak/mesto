@@ -1,11 +1,11 @@
-import './pages/index.css'
+import './index.css'
 
-import Section from './components/Section.js';
-import Card from './components/Card.js';
-import PopupWithForm from './components/PopupWithForm.js';
-import PopupWithImage from './components/PopupWithImage.js';
-import UserInfo from './components/UserInfo.js';
-import FormValidator from './components/FormValidator.js';
+import Section from '../components/Section.js';
+import Card from '../components/Card.js';
+import PopupWithForm from '../components/PopupWithForm.js';
+import PopupWithImage from '../components/PopupWithImage.js';
+import UserInfo from '../components/UserInfo.js';
+import FormValidator from '../components/FormValidator.js';
 import {
   initialCards,
   cardTemplateSelector,
@@ -22,27 +22,29 @@ import {
   addFormElement,
   editFormElement,
   settings
-} from './utils/constants.js';
+} from '../utils/constants.js';
 
 
 //userInfo
 const userInfo = new UserInfo(profileNameSelector, profileAboutSelector);
 
+// create card
+const createCard = (item) => {
+  const card =  new Card({
+    photoLink: item['link'],
+    placeName: item['name'],
+    handleCardClick: (link, name) => photoPopup.open(link, name)
+  },
+  cardTemplateSelector);
+  const newCard = card.getCardElement();
+  cardsList.setItem(newCard);
+}
 
 //add card
 const cardsList = new Section({
   items: initialCards,
-  renderer: (item) => {
-    const card =  new Card({
-      photoLink: item.link,
-      placeName: item.name,
-      handleCardClick: (link, name) => photoPopup.open(link, name)
-    },
-    cardTemplateSelector);
-    const newCard = card.getCardElement();
-    cardsList.setItem(newCard);
-    }
-  }, 
+  renderer: item => createCard(item)
+  },
   cardsTableSelector
 );
 cardsList.renderItems();
@@ -53,15 +55,8 @@ const photoPopup = new PopupWithImage(photoPopupSelector);
 
 const addFormPopup = new PopupWithForm({
   popupSelector: addPopupSelector,
-  submitHandler: (inputData) => {
-    const card = new Card({
-      photoLink: inputData['card-link'],
-      placeName: inputData['card-name'],
-      handleCardClick: (link, name) => photoPopup.open(link, name)
-    },
-    cardTemplateSelector);
-    const newCard = card.getCardElement();
-    cardsList.setItem(newCard);
+  submitHandler: item => {
+    createCard(item)
     addFormPopup.close();
   }
 });
