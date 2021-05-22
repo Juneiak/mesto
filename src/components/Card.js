@@ -21,7 +21,7 @@ export default class Card {
         const deleteButton = this._photoElement.querySelector('.element__delete-button');
         deleteButton.addEventListener('click', () => deleteButton.closest('.element').remove());
         
-        this._imageElement.addEventListener('click', () =>{
+        this._imageElement.addEventListener('click', () => {
           this._handleCardClick(this._photoLink, this._placeName);
         });
     };

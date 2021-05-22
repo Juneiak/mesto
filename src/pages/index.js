@@ -6,7 +6,6 @@ import UserInfo from '../components/UserInfo.js';
 import FormValidator from '../components/FormValidator.js';
 import Api from '../components/Api.js';
 import {
-  initialCards,
   cardTemplateSelector,
   photoPopupSelector,
   editPopupSelector,
@@ -35,30 +34,37 @@ const userInfo = new UserInfo(profileNameSelector, profileAboutSelector, profile
 api.getUserProfileData()
   .then(profileData => {
     userInfo.setUserInfo(profileData);
+    userInfo.setUserAvatar(profileData);
   })
 
 
 // create card
-const createCard = (item) => {
+const createCard = (cardData) => {
   const card =  new Card({
-    photoLink: item['link'],
-    placeName: item['name'],
+    photoLink: cardData['link'],
+    placeName: cardData['name'],
     handleCardClick: (link, name) => photoPopup.open(link, name)
   },
   cardTemplateSelector);
   const newCard = card.getCardElement();
-  cardsList.setItem(newCard);
+  return newCard;
 }
 
 
-//add card
+// cardsList Section initiation
 const cardsList = new Section({
-  items: initialCards,
-  renderer: item => createCard(item)
+  renderer: item => {
+    cardsList.setItem(createCard(item))
   },
-  cardsTableSelector
-);
-cardsList.renderItems();
+  containerSelector: cardsTableSelector
+});
+
+
+// add card from api
+api.getInitialCards()
+  .then(initialCardsData => {
+    cardsList.renderItems(initialCardsData);
+  });
 
 
 //popups
@@ -67,7 +73,11 @@ const photoPopup = new PopupWithImage(photoPopupSelector);
 const addFormPopup = new PopupWithForm({
   popupSelector: addPopupSelector,
   submitHandler: item => {
-    createCard(item)
+    api.addCard(item)
+      .then(newCardData => {
+        
+        cardsList.setItem(createCard(newCardData));
+      })
     addFormPopup.close();
   }
 });
@@ -75,7 +85,10 @@ const addFormPopup = new PopupWithForm({
 const editFormPopup = new PopupWithForm({
   popupSelector: editPopupSelector,
   submitHandler: (inputData) => {
-    userInfo.setUserInfo(inputData);
+    api.editPrifile(inputData)
+      .then(editedProfileData => {
+        userInfo.setUserInfo(editedProfileData)
+      })
     editFormPopup.close();
   }
 });
