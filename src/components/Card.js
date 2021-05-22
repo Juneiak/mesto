@@ -1,9 +1,10 @@
 export default class Card {
-    constructor({photoLink, placeName, handleCardClick}, templateSelector) {
+    constructor({photoLink, placeName, handleCardClick, likes}, templateSelector) {
         this._photoLink = photoLink;
         this._placeName = placeName;
         this._handleCardClick = handleCardClick;
         this._templateSelector = templateSelector;
+        this._likes = likes;
     }
     
     _addImageInfo() {
@@ -11,6 +12,7 @@ export default class Card {
         this._imageElement.src = this._photoLink;
         this._imageElement.alt = `фотография ${this._placeName}`;
         this._photoElement.querySelector('.element__place-name').textContent = this._placeName;
+        this._photoElement.querySelector('.element__like-amount').textContent = this._likes.length;
     }
 
     _addListeners() {

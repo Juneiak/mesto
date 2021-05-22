@@ -40,9 +40,11 @@ api.getUserProfileData()
 
 // create card
 const createCard = (cardData) => {
+  console.log(cardData['likes'])
   const card =  new Card({
     photoLink: cardData['link'],
     placeName: cardData['name'],
+    likes: cardData['likes'],
     handleCardClick: (link, name) => photoPopup.open(link, name)
   },
   cardTemplateSelector);
