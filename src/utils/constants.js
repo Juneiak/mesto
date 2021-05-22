@@ -12,9 +12,20 @@ export const nameInput = document.querySelector('#name');
 export const aboutInput = document.querySelector('#about');
 export const profileNameSelector = '.profile__name';
 export const profileAboutSelector = '.profile__about';
+export const profileAvatarSelector = '.profile__avatar';
 export const cardsTableSelector = '.elements__table';
 export const popups = Array.from(document.querySelectorAll('.pop-up'));
 export const cardTemplateSelector = '.element';
+
+
+export const apiOptions = {
+  baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-24',
+  headers: {
+    authorization: '3014e336-ab57-4b21-b9d4-747bb8ba5538',
+    'Content-Type': 'application/json'
+  }
+}
+
 
 export const settings = {
   fieldSetSelector: '.pop-up__form-container',

@@ -1,11 +1,10 @@
-import './index.css'
-
 import Section from '../components/Section.js';
 import Card from '../components/Card.js';
 import PopupWithForm from '../components/PopupWithForm.js';
 import PopupWithImage from '../components/PopupWithImage.js';
 import UserInfo from '../components/UserInfo.js';
 import FormValidator from '../components/FormValidator.js';
+import Api from '../components/Api.js';
 import {
   initialCards,
   cardTemplateSelector,
@@ -15,18 +14,29 @@ import {
   cardsTableSelector,
   profileAboutSelector,
   profileNameSelector,
+  profileAvatarSelector,
   profileEditButton,
   photoAddButton,
   nameInput,
   aboutInput,
   addFormElement,
   editFormElement,
-  settings
+  settings,
+  apiOptions
 } from '../utils/constants.js';
+
+//api 
+const api = new Api(apiOptions);
 
 
 //userInfo
-const userInfo = new UserInfo(profileNameSelector, profileAboutSelector);
+const userInfo = new UserInfo(profileNameSelector, profileAboutSelector, profileAvatarSelector);
+//userInfo - set info from api
+api.getUserProfileData()
+  .then(profileData => {
+    userInfo.setUserInfo(profileData);
+  })
+
 
 // create card
 const createCard = (item) => {
@@ -39,6 +49,7 @@ const createCard = (item) => {
   const newCard = card.getCardElement();
   cardsList.setItem(newCard);
 }
+
 
 //add card
 const cardsList = new Section({
