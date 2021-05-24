@@ -1,11 +1,13 @@
 export default class Card {
-    constructor({photoLink, placeName, handleCardClick, likes, handleDeleteButtonClick}, templateSelector) {
-        this._photoLink = photoLink;
-        this._placeName = placeName;
+    constructor({cardData, handleCardClick, handleDeleteButtonClick}, isAuthor = false, templateSelector) {
+        this._photoLink = cardData['link'];
+        this._placeName = cardData['name'];
+        this._likes = cardData['likes'];
+        this._cardId = cardData['_id']
+        this._isAuthor = isAuthor;
         this._handleCardClick = handleCardClick;
         this._handleDeleteButtonClick = handleDeleteButtonClick;
         this._templateSelector = templateSelector;
-        this._likes = likes;
     }
     
     _addImageInfo() {
@@ -16,19 +18,30 @@ export default class Card {
         this._photoElement.querySelector('.element__like-amount').textContent = this._likes.length;
     }
 
-    _addListeners() {
-        this._photoElement.querySelector('.element__like-button').addEventListener('click', evt => {
-            evt.target.classList.toggle('element__like-button_active');
-        });
+    _addDeleteButtonListener() {
+      const deleteButton = this._photoElement.querySelector('.element__delete-button');
+      deleteButton.classList.remove('element__delete-button_hidden');
+      const cardDataToDelete = {
+        card: deleteButton.closest('.element'),
+        cardId: this._cardId
+      }
+      deleteButton.addEventListener('click', () => {
+        this._handleDeleteButtonClick(cardDataToDelete)
+      });
+    }
 
-        const deleteButton = this._photoElement.querySelector('.element__delete-button');
-        deleteButton.addEventListener('click', () => {
-          this._handleDeleteButtonClick(deleteButton.closest('.element'))
-        });
-        
-        this._imageElement.addEventListener('click', () => {
-          this._handleCardClick(this._photoLink, this._placeName);
-        });
+    _addListeners() {
+      this._photoElement.querySelector('.element__like-button').addEventListener('click', evt => {
+          evt.target.classList.toggle('element__like-button_active');
+      });
+
+      this._imageElement.addEventListener('click', () => {
+        this._handleCardClick(this._photoLink, this._placeName);
+      });
+
+      if (this._isAuthor) {
+        this._addDeleteButtonListener()
+      }
     };
 
     _getTemplate() {

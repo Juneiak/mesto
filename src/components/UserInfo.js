@@ -14,7 +14,12 @@ export default class UserInfo {
     }
   }
 
+  getUserId() {
+    return this._userId
+  }
+
   setUserInfo(profileData) {
+    this._userId = profileData['_id']
     this._profileName.textContent = profileData['name'];
     this._profileAbout.textContent = profileData['about'];
   }

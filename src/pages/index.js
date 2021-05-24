@@ -40,19 +40,17 @@ api.getUserProfileData()
   })
 
 
-
-
 // create card
 const createCard = (cardData) => {
+  const isAuthor = cardData['owner']['_id'] === userInfo.getUserId() ? true : false;
   const card =  new Card({
-    photoLink: cardData['link'],
-    placeName: cardData['name'],
-    likes: cardData['likes'],
+    cardData: cardData,
     handleCardClick: (link, name) => photoPopup.open(link, name),
-    handleDeleteButtonClick: (cardToDelete) => {
-      confirmDeletePopup.open(cardToDelete)
+    handleDeleteButtonClick: (cardDataToDelete) => {
+      confirmDeletePopup.open(cardDataToDelete)
     }
   },
+  isAuthor,
   cardTemplateSelector);
   const newCard = card.getCardElement();
   return newCard;
@@ -77,21 +75,22 @@ api.getInitialCards()
 
 //popups
 const photoPopup = new PopupWithImage(photoPopupSelector);
+
 const confirmDeletePopup = new PopupWithButton({
   popupSelector: deletePopupSelector,
-  clickHandler: (cardToDelete) => {
-    cardToDelete.remove();
-    confirmDeletePopup.close();
+  clickHandler: (cardDataToDelete) => {
+    api.deleteCard(cardDataToDelete['cardId'])
+      .then(res => cardDataToDelete['card'].remove())
+      .catch(err => console.log(err))
+      .finally(() => confirmDeletePopup.close());
   }
-})
-
+});
 
 const addFormPopup = new PopupWithForm({
   popupSelector: addPopupSelector,
   submitHandler: item => {
     api.addCard(item)
       .then(newCardData => {
-        
         cardsList.setItem(createCard(newCardData));
       })
     addFormPopup.close();
@@ -103,7 +102,7 @@ const editFormPopup = new PopupWithForm({
   submitHandler: (inputData) => {
     api.editPrifile(inputData)
       .then(editedProfileData => {
-        userInfo.setUserInfo(editedProfileData)
+        userInfo.setUserInfo(editedProfileData);
       })
     editFormPopup.close();
   }
@@ -114,16 +113,17 @@ const editFormPopup = new PopupWithForm({
 const validateForm = formElement => {
   const validatedForm = new FormValidator(settings, formElement);
   validatedForm.enableValidation();
-  return validatedForm
+  return validatedForm;
 }
 const validatedAddForm = validateForm(addFormElement);
 const validatedEditForm = validateForm(editFormElement);
 
 
 //set listeners
-photoPopup.setEventListeners()
-addFormPopup.setEventListeners()
-editFormPopup.setEventListeners()
+photoPopup.setEventListeners();
+addFormPopup.setEventListeners();
+editFormPopup.setEventListeners();
+confirmDeletePopup.setEventListeners();
 
 profileEditButton.addEventListener('click', () => {
   const userCurrentInfo = userInfo.getUserInfo();

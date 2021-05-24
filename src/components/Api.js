@@ -68,4 +68,14 @@ export default class API {
     return newCard
   }
 
+  deleteCard(cardId) {
+    const deletedCard = fetch(`${this._options.baseUrl}/cards/${cardId}`, {
+      method: 'DELETE',
+      headers: this._options.headers
+    })
+      .then(this._checkStatus)
+      
+    return deletedCard
+  };
+
 };

@@ -5,18 +5,18 @@ export default class PopupWithButton extends Popup {
     super(popupSelector);
     this._clickHandler = clickHandler;
     this._button = this._popup.querySelector('#button');
-    this._shimHandler = () => this._clickHandler(this._item);
+    this._shimClickHandler = () => this._clickHandler(this._itemData);
   }
 
-  open(item) {
+  open(itemData) {
     super.open();
-    this._item = item;
-    this._button.addEventListener('click', this._shimHandler);
+    this._itemData = itemData;
+    this._button.addEventListener('click', this._shimClickHandler);
   };
 
   close() {  
     super.close();
-    this._button.removeEventListener('click', this._shimHandler);
+    this._button.removeEventListener('click', this._shimClickHandler);
   };
   
 };
