@@ -42,15 +42,23 @@ api.getUserProfileData()
 
 // create card
 const createCard = (cardData) => {
-  const isAuthor = cardData['owner']['_id'] === userInfo.getUserId() ? true : false;
+  const userId = userInfo.getUserId();
+  const isAuthor = cardData['owner']['_id'] === userId ? true : false;
+  const isLiked = cardData['likes'].some((liked) => liked['_id'] === userId);
+
   const card =  new Card({
+    isLiked: isLiked,
+    isAuthor: isAuthor,
     cardData: cardData,
     handleCardClick: (link, name) => photoPopup.open(link, name),
-    handleDeleteButtonClick: (cardDataToDelete) => {
-      confirmDeletePopup.open(cardDataToDelete)
+    handleDeleteButtonClick: (cardDataToDelete) => confirmDeletePopup.open(cardDataToDelete),
+    handleLikeClick: (likeStatus, numberOflikes, cardId) => {
+      api.likeStatus(cardId, likeStatus)
+        .then(updatedCard => {
+          numberOflikes.textContent = updatedCard['likes'].length
+        })
     }
   },
-  isAuthor,
   cardTemplateSelector);
   const newCard = card.getCardElement();
   return newCard;

@@ -77,5 +77,19 @@ export default class API {
       
     return deletedCard
   };
+  
+  likeStatus(cardId, likeStatus) {
+    const method = likeStatus ? 'PUT' : 'DELETE';
+    
+    const updatedCard = fetch(`${this._options.baseUrl}/cards/likes/${cardId}`, {
+      method: method,
+      headers: this._options.headers
+    })
+    .then(this._checkStatus)
+    .catch(err => {
+      console.log(err)
+    })
+    return updatedCard
+  }
 
 };
