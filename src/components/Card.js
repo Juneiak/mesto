@@ -1,8 +1,9 @@
 export default class Card {
-    constructor({photoLink, placeName, handleCardClick, likes}, templateSelector) {
+    constructor({photoLink, placeName, handleCardClick, likes, handleDeleteButtonClick}, templateSelector) {
         this._photoLink = photoLink;
         this._placeName = placeName;
         this._handleCardClick = handleCardClick;
+        this._handleDeleteButtonClick = handleDeleteButtonClick;
         this._templateSelector = templateSelector;
         this._likes = likes;
     }
@@ -21,7 +22,9 @@ export default class Card {
         });
 
         const deleteButton = this._photoElement.querySelector('.element__delete-button');
-        deleteButton.addEventListener('click', () => deleteButton.closest('.element').remove());
+        deleteButton.addEventListener('click', () => {
+          this._handleDeleteButtonClick(deleteButton.closest('.element'))
+        });
         
         this._imageElement.addEventListener('click', () => {
           this._handleCardClick(this._photoLink, this._placeName);

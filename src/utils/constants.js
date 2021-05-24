@@ -1,11 +1,9 @@
 export const photoPopupSelector = '#photo';
 export const editPopupSelector = '#edit';
 export const addPopupSelector = '#add';
+export const deletePopupSelector = '#delete';
 export const profileEditButton = document.querySelector('.profile__edit-button');
 export const photoAddButton = document.querySelector('.profile__add-button');
-export const editPopUpCloseButton = document.querySelector('#close-edit');
-export const addPopUpCloseButton = document.querySelector('#close-add');
-export const photoPopUpCloseButton = document.querySelector('#photo-close');
 export const editFormElement = document.querySelector('#edit-form');
 export const addFormElement = document.querySelector('#add-form');
 export const nameInput = document.querySelector('#name');

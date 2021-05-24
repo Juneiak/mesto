@@ -49,26 +49,35 @@
     </div>
     
     <div class="pop-up" id="add">
-        <form class="pop-up__form" method="POST" novalidate name="photo-add-form" id="add-form">
-          <fieldset class="pop-up__form-container">
-            <h2 class="pop-up__title">Новое место</h2>
-            <input class="pop-up__form-text-input" type="text" minlength="2" maxlength="30" id="card-name" name="name" value="" placeholder="Название" required>
-            <span class="pop-up__error card-name-error"></span>
-            <input class="pop-up__form-text-input" type="url" id="card-link" name="link" value="" placeholder="Ссылка на картинку" required>
-            <span class="pop-up__error card-link-error" ></span>
-            <button class="pop-up__form-button pop-up__form-button_inactive button-animation button-animation_blackout-level_light" disabled type="submit" id="photo-create">Создать</button>
-          </fieldset>
-          <button class="pop-up__close-button button-animation" type="button" id="close-add"></button>
-        </form>
-      </div>
+      <form class="pop-up__form" method="POST" novalidate name="photo-add-form" id="add-form">
+        <fieldset class="pop-up__form-container">
+          <h2 class="pop-up__title">Новое место</h2>
+          <input class="pop-up__form-text-input" type="text" minlength="2" maxlength="30" id="card-name" name="name" value="" placeholder="Название" required>
+          <span class="pop-up__error card-name-error"></span>
+          <input class="pop-up__form-text-input" type="url" id="card-link" name="link" value="" placeholder="Ссылка на картинку" required>
+          <span class="pop-up__error card-link-error" ></span>
+          <button class="pop-up__form-button pop-up__form-button_inactive button-animation button-animation_blackout-level_light" disabled type="submit" id="photo-create">Создать</button>
+        </fieldset>
+        <button class="pop-up__close-button button-animation" type="button" id="close-add"></button>
+      </form>
+    </div>
 
-      <div class="pop-up" id="photo">
-        <figure class="pop-up__figure">
-          <button class="pop-up__close-button button-animation" type="button" id="photo-close"></button>
-          <img class="pop-up__image" src="./images/dombay.jpg" alt="фотография">
-          <figcaption class="pop-up__caption"></figcaption>
-        </figure>
+    <div class="pop-up" id="photo">
+      <figure class="pop-up__figure">
+        <button class="pop-up__close-button button-animation" type="button" id="photo-close"></button>
+        <img class="pop-up__image" src="./images/dombay.jpg" alt="фотография">
+        <figcaption class="pop-up__caption"></figcaption>
+      </figure>
+    </div>
+
+    <div class="pop-up" id='delete'>
+      <div class="pop-up__confirmDelete">
+        <h2 class="pop-up__title pop-up__title_delete">Вы уверены?</h2>
+        <button class="pop-up__form-button button-animation button-animation_blackout-level_light" type="button" id="button">Да</button>
+        <button class="pop-up__close-button button-animation" type="button" id="close-delete"></button>
       </div>
+    </div>
+      
 
   </div>
   <template id="template">
@@ -91,6 +100,7 @@
   <script type="module" src="./components/Popup.js"></script>
   <script type="module" src="./components/PopupWithForm.js"></script>
   <script type="module" src="./components/PopupWithImage.js"></script>
+  <script type="module" src="./components/PopupWithButton.js"></script>
   <script type="module" src="./components/Section.js"></script>
   <script type="module" src="./components/UserInfo.js"></script>
   <script type="module" src="./pages/index.js"></script>

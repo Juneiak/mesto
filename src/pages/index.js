@@ -5,10 +5,12 @@ import PopupWithImage from '../components/PopupWithImage.js';
 import UserInfo from '../components/UserInfo.js';
 import FormValidator from '../components/FormValidator.js';
 import Api from '../components/Api.js';
+import PopupWithButton from '../components/PopupWithButton.js';
 import {
   cardTemplateSelector,
   photoPopupSelector,
   editPopupSelector,
+  deletePopupSelector,
   addPopupSelector,
   cardsTableSelector,
   profileAboutSelector,
@@ -38,14 +40,18 @@ api.getUserProfileData()
   })
 
 
+
+
 // create card
 const createCard = (cardData) => {
-  console.log(cardData['likes'])
   const card =  new Card({
     photoLink: cardData['link'],
     placeName: cardData['name'],
     likes: cardData['likes'],
-    handleCardClick: (link, name) => photoPopup.open(link, name)
+    handleCardClick: (link, name) => photoPopup.open(link, name),
+    handleDeleteButtonClick: (cardToDelete) => {
+      confirmDeletePopup.open(cardToDelete)
+    }
   },
   cardTemplateSelector);
   const newCard = card.getCardElement();
@@ -71,6 +77,14 @@ api.getInitialCards()
 
 //popups
 const photoPopup = new PopupWithImage(photoPopupSelector);
+const confirmDeletePopup = new PopupWithButton({
+  popupSelector: deletePopupSelector,
+  clickHandler: (cardToDelete) => {
+    cardToDelete.remove();
+    confirmDeletePopup.close();
+  }
+})
+
 
 const addFormPopup = new PopupWithForm({
   popupSelector: addPopupSelector,
