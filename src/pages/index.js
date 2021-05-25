@@ -12,16 +12,19 @@ import {
   editPopupSelector,
   deletePopupSelector,
   addPopupSelector,
+  avatarChangePopupSelector,
   cardsTableSelector,
   profileAboutSelector,
   profileNameSelector,
   profileAvatarSelector,
   profileEditButton,
   photoAddButton,
+  avatarButton,
   nameInput,
   aboutInput,
   addFormElement,
   editFormElement,
+  avatarChangeFormElement,
   settings,
   apiOptions
 } from '../utils/constants.js';
@@ -84,35 +87,57 @@ api.getInitialCards()
 //popups
 const photoPopup = new PopupWithImage(photoPopupSelector);
 
+const avatarChangeFormPopup = new PopupWithForm({
+  popupSelector: avatarChangePopupSelector,
+  loadingText: {off: 'Сохранить', on: 'Сохранение...'},
+  submitHandler: (newAvatarUrl) => {
+    avatarChangeFormPopup.renderloading(true);
+    api.changeAvatar(newAvatarUrl['newAvatarUrl'])
+      .then((newProfileData) => {
+        userInfo.setUserAvatar(newProfileData);
+        avatarChangeFormPopup.close();
+        avatarChangeFormPopup.renderloading(false);
+      })
+  }
+})
+
 const confirmDeletePopup = new PopupWithButton({
   popupSelector: deletePopupSelector,
   clickHandler: (cardDataToDelete) => {
     api.deleteCard(cardDataToDelete['cardId'])
-      .then(res => cardDataToDelete['card'].remove())
+      .then(res => {
+        cardDataToDelete['card'].remove();
+        confirmDeletePopup.close()
+      })
       .catch(err => console.log(err))
-      .finally(() => confirmDeletePopup.close());
   }
 });
 
 const addFormPopup = new PopupWithForm({
   popupSelector: addPopupSelector,
+  loadingText: {off: 'Создать', on: 'Cоздание...'},
   submitHandler: item => {
+    addFormPopup.renderloading(true);
     api.addCard(item)
       .then(newCardData => {
         cardsList.setItem(createCard(newCardData));
+        addFormPopup.close();
+        addFormPopup.renderloading(false);
       })
-    addFormPopup.close();
   }
 });
 
 const editFormPopup = new PopupWithForm({
   popupSelector: editPopupSelector,
+  loadingText: {off: 'Сохранить', on: 'Сохранение...'},
   submitHandler: (inputData) => {
+    editFormPopup.renderloading(true);
     api.editPrifile(inputData)
       .then(editedProfileData => {
         userInfo.setUserInfo(editedProfileData);
+        editFormPopup.close();
+        editFormPopup.renderloading(false);
       })
-    editFormPopup.close();
   }
 });
 
@@ -125,13 +150,14 @@ const validateForm = formElement => {
 }
 const validatedAddForm = validateForm(addFormElement);
 const validatedEditForm = validateForm(editFormElement);
-
+const validatedAvatarChangeForm = validateForm(avatarChangeFormElement)
 
 //set listeners
 photoPopup.setEventListeners();
 addFormPopup.setEventListeners();
 editFormPopup.setEventListeners();
 confirmDeletePopup.setEventListeners();
+avatarChangeFormPopup.setEventListeners();
 
 profileEditButton.addEventListener('click', () => {
   const userCurrentInfo = userInfo.getUserInfo();
@@ -146,3 +172,8 @@ photoAddButton.addEventListener('click', () => {
   validatedAddForm.checkValidation();
   addFormPopup.open();
 });
+
+avatarButton.addEventListener('click', () => {
+  validatedAvatarChangeForm.checkValidation();
+  avatarChangeFormPopup.open();
+})

@@ -1,9 +1,19 @@
 import Popup from './Popup.js';
 
 export default class PopupWithForm extends Popup {
-  constructor({popupSelector, submitHandler}) {
+  constructor({popupSelector, submitHandler, loadingText}) {
     super(popupSelector);
     this._submitHandler = submitHandler;
+    this._loadingText = loadingText;
+    this._formButton = this._popup.querySelector('.pop-up__form-button')
+  };
+
+  renderloading(status) {
+    if (status) {
+      this._formButton.textContent = this._loadingText['on']
+    } else {
+      this._formButton.textContent = this._loadingText['off']
+    }
   }
 
   setEventListeners() {

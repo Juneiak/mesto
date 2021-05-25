@@ -85,11 +85,26 @@ export default class API {
       method: method,
       headers: this._options.headers
     })
-    .then(this._checkStatus)
-    .catch(err => {
-      console.log(err)
-    })
+      .then(this._checkStatus)
+      .catch(err => {
+        console.log(err)
+      })
     return updatedCard
   }
 
+  changeAvatar(newAvatarUrl) {
+    const newAvatar = fetch(`${this._options.baseUrl}/users/me/avatar`, {
+      method: 'PATCH',
+      headers: this._options.headers,
+      body: JSON.stringify({
+        avatar: newAvatarUrl
+      })
+    })
+      .then(this._checkStatus)
+      .catch(err => {
+        console.log(err)
+      })
+      return newAvatar
+  };
+  
 };

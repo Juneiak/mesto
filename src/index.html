@@ -16,7 +16,7 @@
 
     <main class="main">
       <section class="profile">
-        <img class="profile__avatar" src="" alt="аватар">
+        <button class="profile__avatar-button" type="button"><img class="profile__avatar" src="" alt="аватар"></button>
         <div class="profile__info">
           <h1 class="profile__name">Жак-Ив Кусто</h1>
           <p class="profile__about">Исследователь океана</p>
@@ -44,7 +44,7 @@
           <span class="pop-up__error about-error"></span>
           <button class="pop-up__form-button button-animation button-animation_blackout-level_light" type="submit" id="changes-save">Сохранить</button>
         </fieldset>
-        <button class="pop-up__close-button button-animation" type="button" id="close-edit"></button>
+        <button class="pop-up__close-button button-animation" type="button"></button>
       </form>
     </div>
     
@@ -58,14 +58,14 @@
           <span class="pop-up__error card-link-error" ></span>
           <button class="pop-up__form-button pop-up__form-button_inactive button-animation button-animation_blackout-level_light" disabled type="submit" id="photo-create">Создать</button>
         </fieldset>
-        <button class="pop-up__close-button button-animation" type="button" id="close-add"></button>
+        <button class="pop-up__close-button button-animation" type="button"></button>
       </form>
     </div>
 
     <div class="pop-up" id="photo">
       <figure class="pop-up__figure">
         <button class="pop-up__close-button button-animation" type="button" id="photo-close"></button>
-        <img class="pop-up__image" src="./images/dombay.jpg" alt="фотография">
+        <img class="pop-up__image" src="" alt="фотография">
         <figcaption class="pop-up__caption"></figcaption>
       </figure>
     </div>
@@ -74,8 +74,20 @@
       <div class="pop-up__confirmDelete">
         <h2 class="pop-up__title pop-up__title_delete">Вы уверены?</h2>
         <button class="pop-up__form-button button-animation button-animation_blackout-level_light" type="button" id="button">Да</button>
-        <button class="pop-up__close-button button-animation" type="button" id="close-delete"></button>
+        <button class="pop-up__close-button button-animation" type="button"></button>
       </div>
+    </div>
+
+    <div class="pop-up" id="changeAvatar">
+      <form class="pop-up__form" method="POST" novalidate name="changeAvatar" id="changeAvatar">
+        <fieldset class="pop-up__form-container">
+          <h2 class="pop-up__title">Обновить аватар</h2>
+          <input class="pop-up__form-text-input" type="url" id="changeAvatar" name="newAvatarUrl" value="" placeholder="Ссылка на аватар" required>
+          <span class="pop-up__error changeAvatar-error" ></span>
+          <button class="pop-up__form-button pop-up__form-button_inactive button-animation button-animation_blackout-level_light" disabled type="submit" id="photo-create">Сохранить</button>
+        </fieldset>
+        <button class="pop-up__close-button button-animation" type="button"></button>
+      </form>
     </div>
       
 
