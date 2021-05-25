@@ -60,7 +60,7 @@ const createCard = (cardData) => {
     handleLikeClick: (likeStatus, numberOflikes, cardId) => {
       api.likeStatus(cardId, likeStatus)
         .then(updatedCard => {
-          numberOflikes.textContent = updatedCard['likes'].length
+          numberOflikes.textContent = updatedCard['likes'].length;
         })
     }
   },
@@ -73,7 +73,7 @@ const createCard = (cardData) => {
 // cardsList Section initiation
 const cardsList = new Section({
   renderer: item => {
-    cardsList.setItem(createCard(item))
+    cardsList.setItem(createCard(item));
   },
   containerSelector: cardsTableSelector
 });
@@ -109,7 +109,7 @@ const confirmDeletePopup = new PopupWithButton({
     api.deleteCard(cardDataToDelete['cardId'])
       .then(res => {
         cardDataToDelete['card'].remove();
-        confirmDeletePopup.close()
+        confirmDeletePopup.close();
       })
       .catch(err => console.log(err))
   }
@@ -152,7 +152,7 @@ const validateForm = formElement => {
 }
 const validatedAddForm = validateForm(addFormElement);
 const validatedEditForm = validateForm(editFormElement);
-const validatedAvatarChangeForm = validateForm(avatarChangeFormElement)
+const validatedAvatarChangeForm = validateForm(avatarChangeFormElement);
 
 //set listeners
 photoPopup.setEventListeners();
