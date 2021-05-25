@@ -4,16 +4,15 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="author" content="Алан Ибатуллин">
-  <link rel="stylesheet" href="./pages/index.css">
   <title>Mesto</title>
 </head>
 <body class="common">
   <div class="page">
 
     <header class="header">
-      <img class="header__image" src="./images/Vector-2.svg" alt="Логотип 'mesto'">
+      <img class="header__image" src="<%=require('./images/Vector-2.svg')%>" alt="Логотип 'mesto'">
     </header>
-
+      
     <main class="main">
       <section class="profile">
         <button class="profile__avatar-button" type="button"><img class="profile__avatar" src="" alt="аватар"></button>
@@ -95,7 +94,7 @@
   <template id="template">
     <li class="element">
         <button class="element__delete-button element__delete-button_hidden button-animation" type="button" id="delete-card"></button>
-        <img class="element__image" src="./images/dombay.jpg" alt="фотография">
+        <img class="element__image" src="" alt="фотография">
         <div class="element__about">
           <h2 class="element__place-name"></h2>
           <div>
@@ -106,15 +105,5 @@
       </li>
   </template>
 
-  <script type="module" src="./utils/constants.js"></script>
-  <script type="module" src="./components/Card.js"></script>
-  <script type="module" src="./components/FormValidator.js"></script>
-  <script type="module" src="./components/Popup.js"></script>
-  <script type="module" src="./components/PopupWithForm.js"></script>
-  <script type="module" src="./components/PopupWithImage.js"></script>
-  <script type="module" src="./components/PopupWithButton.js"></script>
-  <script type="module" src="./components/Section.js"></script>
-  <script type="module" src="./components/UserInfo.js"></script>
-  <script type="module" src="./pages/index.js"></script>
 </body>
 </html>
