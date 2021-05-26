@@ -18,9 +18,6 @@ export default class API {
       headers: this._options.headers
     })
       .then(this._checkStatus)
-      .catch(err => {
-        console.log(err)
-      })
     return userProfileData
   };
 
@@ -30,9 +27,6 @@ export default class API {
       headers: this._options.headers
     })
       .then(this._checkStatus)
-      .catch(err => {
-        console.log(err)
-      })
     return initialCards
   };
 
@@ -46,9 +40,6 @@ export default class API {
       })
     })
       .then(this._checkStatus)
-      .catch(err => {
-        console.log(err)
-      })
     return newProfileData
   }
 
@@ -62,9 +53,6 @@ export default class API {
       })
     })
       .then(this._checkStatus)
-      .catch(err => {
-        console.log(err)
-      })
     return newCard
   }
 
@@ -86,9 +74,7 @@ export default class API {
       headers: this._options.headers
     })
       .then(this._checkStatus)
-      .catch(err => {
-        console.log(err)
-      })
+      
     return updatedCard
   }
 
@@ -101,9 +87,6 @@ export default class API {
       })
     })
       .then(this._checkStatus)
-      .catch(err => {
-        console.log(err)
-      })
       return newAvatar
   };
   

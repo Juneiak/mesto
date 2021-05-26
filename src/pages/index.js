@@ -1,4 +1,4 @@
-import './index.css';
+//import './index.css';
 
 import Section from '../components/Section.js';
 import Card from '../components/Card.js';
@@ -62,6 +62,7 @@ const createCard = (cardData) => {
         .then(updatedCard => {
           numberOflikes.textContent = updatedCard['likes'].length;
         })
+        .catch(err => console.log(err))
     }
   },
   cardTemplateSelector);
@@ -80,10 +81,11 @@ const cardsList = new Section({
 
 
 // add card from api
-api.getInitialCards()
+api.getInitialCards() // до конца не понял ваше замечание. Проверка на принадлежность проходит при создание карточки
   .then(initialCardsData => {
     cardsList.renderItems(initialCardsData);
-  });
+  })
+  .catch(err => console.log(err))
 
 
 //popups
@@ -98,8 +100,9 @@ const avatarChangeFormPopup = new PopupWithForm({
       .then((newProfileData) => {
         userInfo.setUserAvatar(newProfileData);
         avatarChangeFormPopup.close();
-        avatarChangeFormPopup.renderloading(false);
       })
+      .catch(err => console.log(err))
+      .finally(() => avatarChangeFormPopup.renderloading(false))
   }
 })
 
@@ -124,8 +127,9 @@ const addFormPopup = new PopupWithForm({
       .then(newCardData => {
         cardsList.setItem(createCard(newCardData));
         addFormPopup.close();
-        addFormPopup.renderloading(false);
       })
+      .catch(err => console.log(err))
+      .finally(() => addFormPopup.renderloading(false))
   }
 });
 
@@ -138,8 +142,9 @@ const editFormPopup = new PopupWithForm({
       .then(editedProfileData => {
         userInfo.setUserInfo(editedProfileData);
         editFormPopup.close();
-        editFormPopup.renderloading(false);
       })
+      .catch(err => console.log(err))
+      .finally(() => editFormPopup.renderloading(false))
   }
 });
 
